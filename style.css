@@ -1,0 +1,1145 @@
+/* =====================================================
+   MAMA'S LITTLE HELPER
+   Main stylesheet
+===================================================== */
+
+
+/* =====================================================
+   COLOURS
+===================================================== */
+
+:root {
+
+    --ivory: #f7f4ee;
+
+    --cream: #eee9df;
+
+    --sage: #a9b5a3;
+
+    --sage-dark: #667363;
+
+    --charcoal: #30332f;
+
+    --muted: #747970;
+
+    --white: #ffffff;
+
+    --border: #dedbd3;
+
+    --danger: #8a514b;
+
+    --shadow:
+        0 18px 50px rgba(
+            48,
+            51,
+            47,
+            0.08
+        );
+
+}
+
+
+/* =====================================================
+   BASIC RESET
+===================================================== */
+
+* {
+
+    box-sizing: border-box;
+
+}
+
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: var(--ivory);
+
+    color: var(--charcoal);
+
+}
+
+
+button,
+textarea,
+select {
+
+    font: inherit;
+
+}
+
+
+button {
+
+    cursor: pointer;
+
+}
+
+
+/* =====================================================
+   MAIN APP
+===================================================== */
+
+.app-shell {
+
+    min-height: 100vh;
+
+    display: grid;
+
+    grid-template-columns:
+        320px
+        minmax(0, 1fr);
+
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar {
+
+    background: var(--white);
+
+    border-right:
+        1px solid var(--border);
+
+    padding: 28px 22px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+
+}
+
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+}
+
+
+.brand-mark {
+
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 15px;
+
+    background: var(--sage);
+
+    color: white;
+
+    display: grid;
+
+    place-items: center;
+
+    font-weight: 800;
+
+    font-size: 20px;
+
+}
+
+
+.brand h1 {
+
+    margin: 0;
+
+    font-size: 18px;
+
+    letter-spacing: -0.3px;
+
+}
+
+
+.brand p {
+
+    margin: 4px 0 0;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+/* =====================================================
+   BABY AGE
+===================================================== */
+
+.age-card {
+
+    background: var(--ivory);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 16px;
+
+    padding: 15px;
+
+}
+
+
+.age-card label {
+
+    display: block;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+
+}
+
+
+.age-card select {
+
+    width: 100%;
+
+    border:
+        1px solid var(--border);
+
+    background: white;
+
+    color: var(--charcoal);
+
+    border-radius: 10px;
+
+    padding: 10px;
+
+    outline: none;
+
+}
+
+
+/* =====================================================
+   SECTION HEADING
+===================================================== */
+
+.section-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+
+}
+
+
+.section-heading h2 {
+
+    margin: 0;
+
+    font-size: 13px;
+
+}
+
+
+.text-button {
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--sage-dark);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+/* =====================================================
+   CATEGORY BUTTONS
+===================================================== */
+
+.category-grid {
+
+    display: grid;
+
+    gap: 7px;
+
+}
+
+
+.category-btn {
+
+    border:
+        1px solid transparent;
+
+    background: transparent;
+
+    color: var(--charcoal);
+
+    text-align: left;
+
+    padding: 10px 11px;
+
+    border-radius: 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    transition: 0.2s ease;
+
+}
+
+
+.category-btn:hover {
+
+    background: var(--ivory);
+
+    border-color: var(--border);
+
+    transform: translateX(2px);
+
+}
+
+
+.category-btn span {
+
+    font-size: 13px;
+
+}
+
+
+/* =====================================================
+   RESOURCES
+===================================================== */
+
+.resources-btn {
+
+    border:
+        1px solid var(--border);
+
+    background: var(--cream);
+
+    color: var(--charcoal);
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    font-weight: 700;
+
+}
+
+
+/* =====================================================
+   SIDEBAR NOTE
+===================================================== */
+
+.sidebar-note {
+
+    margin-top: auto;
+
+    padding: 14px;
+
+    border-radius: 14px;
+
+    background: var(--ivory);
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.55;
+
+}
+
+
+/* =====================================================
+   CHAT PANEL
+===================================================== */
+
+.chat-panel {
+
+    min-width: 0;
+
+    display: grid;
+
+    grid-template-rows:
+        auto
+        1fr
+        auto
+        auto;
+
+    max-width: 1050px;
+
+    width: 100%;
+
+    margin: 0 auto;
+
+    background: var(--white);
+
+    box-shadow: var(--shadow);
+
+}
+
+
+/* =====================================================
+   CHAT HEADER
+===================================================== */
+
+.chat-header {
+
+    min-height: 62px;
+
+    border-bottom:
+        1px solid var(--border);
+
+    padding: 0 28px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+.status-dot {
+
+    display: inline-block;
+
+    width: 8px;
+
+    height: 8px;
+
+    background: var(--sage-dark);
+
+    border-radius: 50%;
+
+    margin-right: 6px;
+
+}
+
+
+.age-display {
+
+    background: var(--ivory);
+
+    padding: 7px 10px;
+
+    border-radius: 99px;
+
+}
+
+
+/* =====================================================
+   CHAT MESSAGES
+===================================================== */
+
+.chat-messages {
+
+    padding:
+        30px
+        clamp(18px, 6vw, 70px);
+
+    overflow-y: auto;
+
+}
+
+
+.message {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 18px;
+
+    animation:
+        fadeIn 0.25s ease;
+
+}
+
+
+.user-message {
+
+    justify-content: flex-end;
+
+}
+
+
+/* =====================================================
+   BOT AVATAR
+===================================================== */
+
+.avatar {
+
+    flex:
+        0 0 34px;
+
+    width: 34px;
+
+    height: 34px;
+
+    border-radius: 11px;
+
+    background: var(--sage);
+
+    color: white;
+
+    display: grid;
+
+    place-items: center;
+
+    font-weight: 800;
+
+    font-size: 13px;
+
+}
+
+
+/* =====================================================
+   CHAT BUBBLES
+===================================================== */
+
+.bubble {
+
+    max-width:
+        min(720px, 88%);
+
+    padding:
+        13px 16px;
+
+    border-radius: 16px;
+
+    background: var(--ivory);
+
+    line-height: 1.6;
+
+    font-size: 14px;
+
+}
+
+
+.user-message .bubble {
+
+    background:
+        var(--charcoal);
+
+    color: white;
+
+}
+
+
+.bubble p {
+
+    margin:
+        0 0 8px;
+
+}
+
+
+.bubble p:last-child {
+
+    margin-bottom: 0;
+
+}
+
+
+.bubble ul {
+
+    margin: 8px 0;
+
+    padding-left: 20px;
+
+}
+
+
+.bubble li {
+
+    margin: 5px 0;
+
+}
+
+
+/* =====================================================
+   QUICK QUESTIONS
+===================================================== */
+
+.quick-area {
+
+    margin:
+        20px
+        0
+        0
+        44px;
+
+}
+
+
+.quick-area p {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    margin:
+        0 0 8px;
+
+}
+
+
+.quick-chips {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+}
+
+
+.quick-chip {
+
+    border:
+        1px solid var(--border);
+
+    background: white;
+
+    border-radius: 99px;
+
+    padding:
+        8px
+        11px;
+
+    color: var(--charcoal);
+
+    font-size: 12px;
+
+}
+
+
+.quick-chip:hover {
+
+    background: var(--ivory);
+
+}
+
+
+/* =====================================================
+   TYPING INDICATOR
+===================================================== */
+
+.typing-indicator {
+
+    padding:
+        0
+        30px
+        10px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+}
+
+
+.typing-indicator span {
+
+    width: 5px;
+
+    height: 5px;
+
+    border-radius: 50%;
+
+    background:
+        var(--sage-dark);
+
+    animation:
+        bounce 1s infinite;
+
+}
+
+
+.typing-indicator span:nth-child(2) {
+
+    animation-delay:
+        0.15s;
+
+}
+
+
+.typing-indicator span:nth-child(3) {
+
+    animation-delay:
+        0.3s;
+
+}
+
+
+/* =====================================================
+   MESSAGE INPUT
+===================================================== */
+
+.input-area {
+
+    margin:
+        0
+        clamp(18px, 6vw, 70px)
+        10px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 17px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    padding: 7px;
+
+    background: white;
+
+}
+
+
+.input-area textarea {
+
+    flex: 1;
+
+    resize: none;
+
+    border: 0;
+
+    outline: 0;
+
+    padding: 11px;
+
+    color: var(--charcoal);
+
+    background: transparent;
+
+    max-height: 120px;
+
+}
+
+
+.input-area button {
+
+    width: 43px;
+
+    height: 43px;
+
+    border: 0;
+
+    border-radius: 13px;
+
+    background:
+        var(--charcoal);
+
+    color: white;
+
+}
+
+
+/* =====================================================
+   DISCLAIMER
+===================================================== */
+
+.disclaimer {
+
+    margin: 0;
+
+    padding:
+        0
+        30px
+        16px;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    line-height: 1.45;
+
+}
+
+
+/* =====================================================
+   MODALS
+===================================================== */
+
+.modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10;
+
+    background:
+        rgba(
+            48,
+            51,
+            47,
+            0.35
+        );
+
+    display: grid;
+
+    place-items: center;
+
+    padding: 20px;
+
+}
+
+
+.modal.hidden {
+
+    display: none;
+
+}
+
+
+.modal-card {
+
+    width:
+        min(520px, 100%);
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    position: relative;
+
+    box-shadow:
+        var(--shadow);
+
+}
+
+
+.modal-card h2 {
+
+    margin:
+        0 0 6px;
+
+}
+
+
+.modal-card p {
+
+    color: var(--muted);
+
+    line-height: 1.55;
+
+    font-size: 13px;
+
+}
+
+
+.close-modal {
+
+    position: absolute;
+
+    right: 15px;
+
+    top: 12px;
+
+    border: 0;
+
+    background:
+        var(--ivory);
+
+    width: 34px;
+
+    height: 34px;
+
+    border-radius: 50%;
+
+    font-size: 22px;
+
+}
+
+
+/* =====================================================
+   CATEGORY QUESTIONS
+===================================================== */
+
+.modal-questions {
+
+    display: grid;
+
+    gap: 8px;
+
+    margin-top: 18px;
+
+}
+
+
+.modal-questions button {
+
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--ivory);
+
+    padding: 12px;
+
+    border-radius: 11px;
+
+    text-align: left;
+
+}
+
+
+.modal-questions button:hover {
+
+    background:
+        var(--cream);
+
+}
+
+
+/* =====================================================
+   RESOURCES
+===================================================== */
+
+.resource-list {
+
+    display: grid;
+
+    gap: 10px;
+
+}
+
+
+.resource-list div {
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 13px;
+
+    padding: 13px;
+
+    display: grid;
+
+    gap: 5px;
+
+}
+
+
+.resource-list span {
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+
+.small-note {
+
+    font-size: 11px !important;
+
+}
+
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(5px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+@keyframes bounce {
+
+    0%,
+    60%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    30% {
+
+        transform:
+            translateY(-4px);
+
+    }
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 850px) {
+
+    .app-shell {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .sidebar {
+
+        border-right: 0;
+
+        border-bottom:
+            1px solid var(--border);
+
+        padding: 18px;
+
+    }
+
+
+    .category-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .sidebar-note {
+
+        display: none;
+
+    }
+
+
+    .chat-panel {
+
+        min-height: 75vh;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 520px) {
+
+    .category-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .chat-header {
+
+        padding:
+            0 16px;
+
+    }
+
+
+    .chat-messages {
+
+        padding:
+            20px 14px;
+
+    }
+
+
+    .input-area {
+
+        margin:
+            0
+            14px
+            8px;
+
+    }
+
+
+    .disclaimer {
+
+        padding:
+            0
+            14px
+            12px;
+
+    }
+
+}
