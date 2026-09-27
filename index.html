@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Mama's Little Helper - an AI assistant for mothers and caregivers of babies aged 1–12 months."
+    >
+
+    <title>
+        Mama's Little Helper
+    </title>
+
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+    <main class="app-shell">
+
+
+        <!-- =========================================
+             SIDEBAR
+        ========================================== -->
+
+        <aside class="sidebar">
+
+
+            <!-- BRAND -->
+
+            <div class="brand">
+
+                <div class="brand-mark">
+                    M
+                </div>
+
+
+                <div>
+
+                    <h1>
+                        Mama's Little Helper
+                    </h1>
+
+                    <p>
+                        A little help for the big moments.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BABY AGE -->
+
+            <section class="age-card">
+
+                <label for="babyAge">
+
+                    How old is your baby?
+
+                </label>
+
+
+                <select id="babyAge">
+
+                    <option value="">
+                        Choose an age
+                    </option>
+
+                    <option value="1 month">
+                        1 month
+                    </option>
+
+                    <option value="2 months">
+                        2 months
+                    </option>
+
+                    <option value="3 months">
+                        3 months
+                    </option>
+
+                    <option value="4 months">
+                        4 months
+                    </option>
+
+                    <option value="5 months">
+                        5 months
+                    </option>
+
+                    <option value="6 months">
+                        6 months
+                    </option>
+
+                    <option value="7 months">
+                        7 months
+                    </option>
+
+                    <option value="8 months">
+                        8 months
+                    </option>
+
+                    <option value="9 months">
+                        9 months
+                    </option>
+
+                    <option value="10 months">
+                        10 months
+                    </option>
+
+                    <option value="11 months">
+                        11 months
+                    </option>
+
+                    <option value="12 months">
+                        12 months
+                    </option>
+
+                </select>
+
+            </section>
+
+
+
+            <!-- CATEGORIES -->
+
+            <section class="category-section">
+
+                <div class="section-heading">
+
+                    <h2>
+                        Quick help
+                    </h2>
+
+
+                    <button
+                        id="clearChat"
+                        class="text-button"
+                        type="button"
+                    >
+
+                        New chat
+
+                    </button>
+
+                </div>
+
+
+
+                <div class="category-grid">
+
+
+                    <button
+                        class="category-btn"
+                        data-category="Feeding"
+                    >
+
+                        🍼
+
+                        <span>
+                            Feeding
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="category-btn"
+                        data-category="Sleep"
+                    >
+
+                        😴
+
+                        <span>
+                            Sleep
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="category-btn"
+                        data-category="Crying & Soothing"
+                    >
+
+                        🤍
+
+                        <span>
+                            Crying & Soothing
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="category-btn"
+                        data-category="Diapers & Poop"
+                    >
+
+                        🧷
+
+                        <span>
+                            Diapers & Poop
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="category-btn"
+                        data-category="Bathing & Skin"
+                    >
+
+                        🛁
+
+                        <span>
+                            Bathing & Skin
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="category-btn"
+                        data-category="Baby Development"
+                    >
+
+                        🌱
+
+                        <span>
+                            Development
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="category-btn"
+                        data-category="Postpartum Recovery"
+                    >
+
+                        🤱
+
+                        <span>
+                            Postpartum
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="category-btn"
+                        data-category="Baby Safety"
+                    >
+
+                        🛡️
+
+                        <span>
+                            Baby Safety
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="category-btn"
+                        data-category="Mom's Wellbeing"
+                    >
+
+                        💛
+
+                        <span>
+                            Mom's Wellbeing
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- RESOURCES -->
+
+            <button
+                id="resourcesBtn"
+                class="resources-btn"
+                type="button"
+            >
+
+                🏥 Help & Resources
+
+            </button>
+
+
+
+            <!-- NOTE -->
+
+            <div class="sidebar-note">
+
+                <strong>
+                    Remember:
+                </strong>
+
+                You do not have to know everything.
+
+                Ask one question at a time.
+
+            </div>
+
+
+        </aside>
+
+
+
+        <!-- =========================================
+             CHAT AREA
+        ========================================== -->
+
+        <section class="chat-panel">
+
+
+            <!-- CHAT HEADER -->
+
+            <header class="chat-header">
+
+                <div>
+
+                    <span class="status-dot"></span>
+
+                    <span>
+                        Online
+                    </span>
+
+                </div>
+
+
+                <span
+                    class="age-display"
+                    id="ageDisplay"
+                >
+
+                    Baby age not selected
+
+                </span>
+
+            </header>
+
+
+
+            <!-- MESSAGES -->
+
+            <div
+                id="chatMessages"
+                class="chat-messages"
+            >
+
+
+                <!-- FIRST BOT MESSAGE -->
+
+                <div class="message bot-message">
+
+                    <div class="avatar">
+                        M
+                    </div>
+
+
+                    <div class="bubble">
+
+                        <p>
+                            <strong>
+                                Hi, Mama. 🤍
+                            </strong>
+                        </p>
+
+
+                        <p>
+
+                            I'm Mama's Little Helper.
+
+                            I'm here to make those little
+                            questions feel a little easier.
+
+                        </p>
+
+
+                        <p>
+
+                            Choose a topic on the left,
+                            or ask me anything about caring
+                            for your baby aged 1–12 months.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- QUICK QUESTIONS -->
+
+                <div class="quick-area">
+
+                    <p>
+                        Try a quick question:
+                    </p>
+
+
+                    <div class="quick-chips">
+
+
+                        <button
+                            class="quick-chip"
+                            data-question="How often should my baby feed?"
+                        >
+
+                            How often should baby feed?
+
+                        </button>
+
+
+                        <button
+                            class="quick-chip"
+                            data-question="What is a safe sleeping position for my baby?"
+                        >
+
+                            Safe sleeping position
+
+                        </button>
+
+
+                        <button
+                            class="quick-chip"
+                            data-question="How do I burp my baby?"
+                        >
+
+                            How do I burp a baby?
+
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- TYPING INDICATOR -->
+
+            <div
+                class="typing-indicator"
+                id="typingIndicator"
+                hidden
+            >
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <small>
+                    Mama's Little Helper is thinking...
+                </small>
+
+            </div>
+
+
+
+            <!-- INPUT -->
+
+            <form
+                id="chatForm"
+                class="input-area"
+            >
+
+
+                <textarea
+                    id="messageInput"
+                    rows="1"
+                    placeholder="Type your question..."
+                    aria-label="Your question"
+                ></textarea>
+
+
+                <button
+                    id="sendBtn"
+                    type="submit"
+                    aria-label="Send message"
+                >
+
+                    ➤
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- DISCLAIMER -->
+
+            <p class="disclaimer">
+
+                This chatbot provides general educational information
+                and is not a substitute for advice from qualified
+                healthcare professionals.
+
+                If you are concerned about your health, or your baby's
+                health, contact a healthcare professional.
+
+            </p>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================
+         CATEGORY MODAL
+    ========================================== -->
+
+    <div
+        id="categoryModal"
+        class="modal hidden"
+    >
+
+
+        <div class="modal-card">
+
+
+            <button
+                class="close-modal"
+                data-close="categoryModal"
+                aria-label="Close"
+            >
+
+                ×
+
+            </button>
+
+
+            <h2 id="modalTitle">
+                Quick questions
+            </h2>
+
+
+            <p id="modalIntro">
+
+                Choose a question to ask
+                Mama's Little Helper.
+
+            </p>
+
+
+            <div
+                id="modalQuestions"
+                class="modal-questions"
+            ></div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         RESOURCES MODAL
+    ========================================== -->
+
+    <div
+        id="resourcesModal"
+        class="modal hidden"
+    >
+
+
+        <div class="modal-card resources-card">
+
+
+            <button
+                class="close-modal"
+                data-close="resourcesModal"
+                aria-label="Close"
+            >
+
+                ×
+
+            </button>
+
+
+            <h2>
+                Help & Resources
+            </h2>
+
+
+            <p>
+
+                If you are worried about yourself
+                or your baby, professional support
+                is important.
+
+            </p>
+
+
+            <div class="resource-list">
+
+
+                <div>
+
+                    <strong>
+                        🏥 Clinic or doctor
+                    </strong>
+
+                    <span>
+
+                        Contact your local clinic,
+                        GP, paediatrician, midwife or
+                        other qualified healthcare
+                        professional.
+
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        🚨 Emergency
+                    </strong>
+
+                    <span>
+
+                        If there is immediate danger
+                        or a serious emergency, contact
+                        your local emergency service or
+                        go to the nearest emergency
+                        department.
+
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        💛 Emotional support
+                    </strong>
+
+                    <span>
+
+                        If you feel overwhelmed, anxious
+                        or unsafe, tell someone you trust
+                        and contact a qualified healthcare
+                        professional.
+
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <p class="small-note">
+
+                Your team can add verified South African
+                clinic, doctor and emergency contact
+                information when those details have been
+                checked.
+
+            </p>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+    ></script>
+
+
+</body>
+
+</html>
