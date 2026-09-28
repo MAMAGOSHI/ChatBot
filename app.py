@@ -1,10 +1,12 @@
 
 from flask import Flask, render_template, request, jsonify
+from dotenv import load_dotenv
 from google import genai
 from google.genai import types
-from dotenv import load_dotenv
 import os
 import re
+import time
+
 
 # ==========================================
 # SETUP
@@ -24,8 +26,11 @@ else:
     client = genai.Client(api_key=GEMINI_API_KEY)
 
 
-# Use a current Gemini Flash model
-MODEL = "gemini-3.5-flash-lite"
+# ==========================================
+# GEMINI MODEL
+# ==========================================
+
+MODEL = "gemini-3.1-flash-lite"
 
 
 # ==========================================
@@ -147,6 +152,7 @@ It does not replace advice from a qualified healthcare professional.
 # ==========================================
 
 def clean_text(text):
+
     if not text:
         return ""
 
@@ -213,7 +219,10 @@ def chat():
 
     try:
 
-        # Check Gemini connection
+        # --------------------------------------
+        # CHECK GEMINI CONNECTION
+        # --------------------------------------
+
         if client is None:
 
             return jsonify({
@@ -221,7 +230,10 @@ def chat():
             }), 500
 
 
-        # Get data from website
+        # --------------------------------------
+        # GET DATA FROM WEBSITE
+        # --------------------------------------
+
         data = request.get_json()
 
         if not data:
@@ -283,37 +295,95 @@ Please seek professional medical help immediately.
         print("Model:", MODEL)
 
 
-        response = client.models.generate_content(
-
-            model=MODEL,
-
-            contents=message,
-
-            config=types.GenerateContentConfig(
-
-                system_instruction=SYSTEM_PROMPT,
-
-                max_output_tokens=300,
-
-                temperature=0.4
-            )
-        )
+        response = None
 
 
         # ======================================
-        # GET GEMINI RESPONSE
+        # TRY GEMINI UP TO 3 TIMES
+        # ======================================
+
+        for attempt in range(3):
+
+            try:
+
+                response = client.models.generate_content(
+
+                    model=MODEL,
+
+                    contents=message,
+
+                    config=types.GenerateContentConfig(
+
+                        system_instruction=SYSTEM_PROMPT,
+
+                        max_output_tokens=300,
+
+                        temperature=0.4
+                    )
+                )
+
+
+                print("Gemini response received.")
+
+                break
+
+
+            except Exception as error:
+
+                print()
+                print("----------------------------------------")
+                print(f"Gemini attempt {attempt + 1} failed:")
+                print(error)
+                print("----------------------------------------")
+
+
+                # If this was the final attempt
+                if attempt == 2:
+
+                    return jsonify({
+                        "error": "Gemini is temporarily busy. Please try again in a moment."
+                    }), 503
+
+
+                # Wait before trying again
+
+                wait_time = 5 * (attempt + 1)
+
+                print(
+                    f"Waiting {wait_time} seconds before trying again..."
+                )
+
+                time.sleep(wait_time)
+
+
+        # ======================================
+        # CHECK RESPONSE
+        # ======================================
+
+        if response is None:
+
+            return jsonify({
+                "error": "No response was received from Gemini."
+            }), 503
+
+
+        # ======================================
+        # GET GEMINI ANSWER
         # ======================================
 
         answer = response.text
 
 
+        print()
         print("========================================")
         print("GEMINI ANSWER:")
         print(answer)
         print("========================================")
 
 
-        # Make sure Gemini actually returned text
+        # ======================================
+        # MAKE SURE ANSWER EXISTS
+        # ======================================
 
         if not answer:
 
@@ -334,9 +404,6 @@ Please seek professional medical help immediately.
 
 
         answer = answer.strip() + disclaimer
-
-
-        print("Gemini response received.")
 
 
         # ======================================
@@ -369,8 +436,12 @@ Please seek professional medical help immediately.
 if __name__ == "__main__":
 
     app.run(
+
         debug=True,
+
         host="127.0.0.1",
+
         port=5050
     )
+
 
