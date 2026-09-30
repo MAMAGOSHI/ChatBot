@@ -30,7 +30,7 @@ The chatbot is designed to provide general information and does not replace prof
 
 ## 🌐 Live Chatbot
 
-👉 **https://chatbot-mammas-little-helper.onrender.com/**
+👉 **https://mamas-little-helper.onrender.com/**
 
 ## 💻 GitHub
 
